@@ -1,4 +1,4 @@
-# learn-vue-2
+# ARIA Client
 
 ## Project setup
 
