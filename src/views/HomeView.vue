@@ -14,13 +14,6 @@
         {{ student.name }} - {{ student.age }} years old
       </li>
     </ul>
-
-    <button
-      class="mt-6 rounded-md bg-emerald-600 px-4 py-2 font-medium text-white hover:bg-emerald-700"
-      @click="handleClickButton"
-    >
-      Click me
-    </button>
   </main>
 </template>
 
@@ -34,8 +27,8 @@ export default {
     ...mapGetters(['studentCount']),
   },
   methods: {
-    handleClickButton() {
-      alert('Hello world')
+    handleClickButton(message) {
+      alert(`Message from child: ${message}`)
     },
   },
 }

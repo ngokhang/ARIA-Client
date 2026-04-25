@@ -40,9 +40,34 @@
     <DrawerComponent
       :open="isSidebarOpen"
       :items="sidebarItems"
-      @close="toggleSidebar"
+      @close="closeSidebar"
     >
-      test
+      <template #title>
+        <span
+          :class="
+            clsx(
+              'text-lg font-semibold',
+              isLightMode ? 'text-black' : 'text-white'
+            )
+          "
+        >
+          Menu
+        </span>
+      </template>
+
+      <template #content>
+        <nav class="flex flex-col gap-4">
+          <router-link
+            v-for="item in sidebarItems"
+            :key="item.to"
+            class="font-medium text-current no-underline hover:text-zinc-500"
+            :to="item.to"
+            @click.native="closeSidebar"
+          >
+            {{ item.label }}
+          </router-link>
+        </nav>
+      </template>
     </DrawerComponent>
   </header>
 </template>
@@ -75,6 +100,9 @@ export default {
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
+    },
+    closeSidebar() {
+      this.isSidebarOpen = false
     },
   },
 }

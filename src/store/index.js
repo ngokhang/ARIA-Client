@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     name: 'Ngo Phu Khang',
     lightMode: true,
-    isSidebarOpen: false,
     students: [
       { name: 'Nguyen Van A', age: 20 },
       { name: 'Le Thi B', age: 22 },
@@ -29,8 +28,8 @@ export default new Vuex.Store({
   getters: {
     studentCount: (state) => state.students.length,
     isLightMode: (state) => state.lightMode,
-    isSidebarOpen: (state) => state.isSidebarOpen,
     navItems: (state) => state.navItems,
+    sidebarItems: (state) => state.sidebarItems,
   },
   mutations: {
     addStudent(state, student) {
@@ -39,9 +38,6 @@ export default new Vuex.Store({
     toggleLightMode(state) {
       state.lightMode = !state.lightMode
     },
-    toggleSidebar(state) {
-      state.isSidebarOpen = !state.isSidebarOpen
-    },
   },
   actions: {
     addStudent({ commit }, student) {
@@ -49,9 +45,6 @@ export default new Vuex.Store({
     },
     toggleLightMode({ commit }) {
       commit('toggleLightMode')
-    },
-    toggleSidebar({ commit }) {
-      commit('toggleSidebar')
     },
   },
 })

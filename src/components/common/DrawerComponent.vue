@@ -1,45 +1,85 @@
 <template>
-  <teleport to="body">
+  <div>
     <!-- Overlay -->
-    <div
-      v-show="open"
-      class="fixed inset-0 z-[999] bg-black/40 transition-opacity duration-300"
-      :class="open ? 'opacity-100' : 'opacity-0'"
-      @click="$emit('close')"
-    />
+    <transition name="drawer-overlay">
+      <div
+        v-if="open"
+        class="fixed inset-0 z-[999] bg-black/40"
+        @click="$emit('close')"
+      />
+    </transition>
 
     <!-- Panel -->
-    <aside
-      class="fixed right-0 top-0 z-[1000] h-screen w-[50vw] min-w-[320px] max-w-[480px] bg-white shadow-2xl transition-transform duration-300 ease-in-out"
-      :class="open ? 'translate-x-0' : 'translate-x-full'"
-      @click.stop
-    >
-      <div class="flex items-center justify-end p-4">
-        <button
-          class="rounded p-2 hover:bg-black/5"
-          type="button"
-          @click="$emit('close')"
-        >
-          <X class="h-4 w-4" aria-hidden="true" />
-        </button>
-      </div>
+    <transition name="drawer-panel">
+      <aside
+        v-if="open"
+        :class="
+          clsx(
+            'fixed right-0 top-0 z-[1000] h-screen w-[50vw] min-w-[320px] max-w-[480px] shadow-2xl',
+            isLightMode ? 'bg-white' : 'bg-slate-900'
+          )
+        "
+        @click.stop
+      >
+        <div class="flex items-center justify-between p-4">
+          <slot name="title" />
+          <button
+            class="rounded p-2 hover:bg-black/5"
+            type="button"
+            @click="$emit('close')"
+          >
+            <X class="h-4 w-4" aria-hidden="true" />
+          </button>
+        </div>
 
-      <div class="p-4">
-        <slot />
-      </div>
-    </aside>
-  </teleport>
+        <div class="p-4">
+          <slot name="content" />
+        </div>
+      </aside>
+    </transition>
+  </div>
 </template>
 
 <script>
 import { X } from 'lucide-vue'
+import { clsx } from 'clsx'
+import { mapGetters } from 'vuex'
 export default {
   name: 'DrawerComponent',
   props: {
     open: { type: Boolean, default: false },
+    items: { type: Array, default: () => [] },
   },
   components: {
     X,
   },
+  methods: {
+    clsx,
+  },
+  computed: {
+    ...mapGetters(['isLightMode']),
+  },
 }
 </script>
+
+<style scoped>
+.drawer-overlay-enter-active,
+.drawer-overlay-leave-active {
+  transition: opacity 300ms ease-in-out;
+}
+
+.drawer-overlay-enter,
+.drawer-overlay-leave-to {
+  opacity: 0;
+}
+
+.drawer-panel-enter-active,
+.drawer-panel-leave-active {
+  transition: transform 300ms ease-in-out;
+}
+
+.drawer-panel-enter,
+.drawer-panel-leave-to {
+  transform: translateX(100%);
+}
+</style>

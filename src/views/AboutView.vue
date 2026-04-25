@@ -1,6 +1,6 @@
 <template>
   <main class="about">
-    <h1>About</h1>
+    <h1>Giới thiệu</h1>
     <p>This page is rendered by Vue Router.</p>
   </main>
 </template>
