@@ -14,15 +14,15 @@ export default new Vuex.Store({
     ],
     navItems: [
       { label: 'Trang chủ', to: '/' },
-      { label: 'Giới thiệu', to: '/about' },
+      { label: 'Giới thiệu', to: '/#achievements' },
       { label: 'Hình ảnh', to: '/media' },
-      { label: 'Liên hệ', to: '/contact' },
+      { label: 'Liên hệ', to: '#contact' },
     ],
     sidebarItems: [
       { label: 'Trang chủ', to: '/' },
-      { label: 'Giới thiệu', to: '/about' },
+      { label: 'Giới thiệu', to: '/#achievements' },
       { label: 'Hình ảnh', to: '/media' },
-      { label: 'Liên hệ', to: '/contact' },
+      { label: 'Liên hệ', to: '#contact' },
     ],
   },
   getters: {

@@ -2,14 +2,16 @@
   <header
     :class="
       clsx(
-        'sticky top-0 z-50 max-h-[128px] border-b-2 px-6 py-4 shadow-sm transition-colors duration-300 ease-in-out',
+        'sticky top-0 z-50 max-h-[128px] border-b-2 shadow-sm transition-colors duration-300 ease-in-out',
         isLightMode
           ? 'border-b bg-white text-black'
           : 'border-b-slate-700 bg-slate-900 text-slate-50'
       )
     "
   >
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-6">
+    <div
+      class="max-w-8xl mx-auto flex items-center justify-between gap-6 px-6 py-4"
+    >
       <router-link class="flex items-center gap-3 no-underline" to="/">
         <span class="text-2xl font-bold tracking-normal text-current">
           ARIA
@@ -37,37 +39,25 @@
       </div>
     </div>
 
-    <DrawerComponent
-      :open="isSidebarOpen"
-      :items="sidebarItems"
-      @close="closeSidebar"
-    >
-      <template #title>
-        <span
+    <DrawerComponent :open="isSidebarOpen" @close="toggleSidebar">
+      <nav class="flex flex-col gap-2">
+        <router-link
+          v-for="item in sidebarItems"
+          :key="item.to"
           :class="
             clsx(
-              'text-lg font-semibold',
-              isLightMode ? 'text-black' : 'text-white'
+              'rounded-2xl px-4 py-3 font-semibold transition',
+              isLightMode
+                ? 'text-slate-800 hover:bg-emerald-50 hover:text-[#42b883]'
+                : 'text-slate-100 hover:bg-slate-800 hover:text-emerald-300'
             )
           "
+          :to="item.to"
+          @click.native="toggleSidebar"
         >
-          Menu
-        </span>
-      </template>
-
-      <template #content>
-        <nav class="flex flex-col gap-4">
-          <router-link
-            v-for="item in sidebarItems"
-            :key="item.to"
-            class="font-medium text-current no-underline hover:text-zinc-500"
-            :to="item.to"
-            @click.native="closeSidebar"
-          >
-            {{ item.label }}
-          </router-link>
-        </nav>
-      </template>
+          {{ item.label }}
+        </router-link>
+      </nav>
     </DrawerComponent>
   </header>
 </template>
@@ -100,9 +90,6 @@ export default {
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
-    },
-    closeSidebar() {
-      this.isSidebarOpen = false
     },
   },
 }

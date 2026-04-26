@@ -10,8 +10,9 @@
       )
     "
   >
-    <AppLayout>
-      <router-view class="p-6" />
+    <router-view v-if="$route.meta.noLayout" />
+    <AppLayout v-else>
+      <router-view />
     </AppLayout>
   </div>
 </template>
@@ -38,6 +39,15 @@ export default {
 <style>
 * {
   box-sizing: border-box;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 #app {

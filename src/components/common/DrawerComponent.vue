@@ -22,7 +22,9 @@
         @click.stop
       >
         <div class="flex items-center justify-between p-4">
-          <slot name="title" />
+          <slot name="title">
+            <span></span>
+          </slot>
           <button
             class="rounded p-2 hover:bg-black/5"
             type="button"
@@ -33,7 +35,7 @@
         </div>
 
         <div class="p-4">
-          <slot name="content" />
+          <slot />
         </div>
       </aside>
     </transition>
@@ -48,7 +50,6 @@ export default {
   name: 'DrawerComponent',
   props: {
     open: { type: Boolean, default: false },
-    items: { type: Array, default: () => [] },
   },
   components: {
     X,
