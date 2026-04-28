@@ -75,6 +75,9 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+    meta: {
+      title: 'ARIA - Ngô Phú Khang',
+    },
   },
   {
     path: '*',
@@ -83,6 +86,7 @@ const routes = [
     meta: {
       fullWidth: true,
       noLayout: true,
+      title: 'Không tìm thấy trang',
     },
   },
 ]
@@ -102,6 +106,11 @@ const router = new VueRouter({
 
     return { x: 0, y: 0 }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'ARIA - Ngô Phú Khang'
+  next()
 })
 
 export default router
