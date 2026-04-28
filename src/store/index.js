@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     name: 'Ngo Phu Khang',
-    lightMode: true,
+    lightMode: false,
     students: [
       { name: 'Nguyen Van A', age: 20 },
       { name: 'Le Thi B', age: 22 },
