@@ -157,6 +157,8 @@
               class="hidden md:row-start-1 md:block"
             ></div>
           </div>
+
+          <div class="h-32 lg:h-[32vh]"></div>
         </div>
       </div>
     </div>
@@ -348,8 +350,8 @@ export default {
           )
         },
         {
-          rootMargin: '-35% 0px -35% 0px',
-          threshold: [0.5],
+          rootMargin: '0px 0px -15% 0px',
+          threshold: 0.2,
         }
       )
 
