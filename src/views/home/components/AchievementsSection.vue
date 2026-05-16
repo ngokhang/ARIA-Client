@@ -11,7 +11,7 @@
             ? 'translate-x-0 opacity-100'
             : '-translate-x-10 opacity-0'
         "
-        class="relative min-w-0 transition duration-700 ease-out lg:sticky lg:top-28"
+        class="relative hidden min-w-0 transition duration-700 ease-out lg:sticky lg:top-28 lg:block"
       >
         <div
           :class="
@@ -318,7 +318,8 @@ export default {
         }
       )
 
-      this.sectionObserver.observe(this.$refs.sectionRoot)
+      if (this.$refs.sectionRoot)
+        this.sectionObserver.observe(this.$refs.sectionRoot)
     },
     observeRoadmapItems() {
       if (!('IntersectionObserver' in window)) {
@@ -328,30 +329,32 @@ export default {
       const roadmapItems = this.$refs.roadmapItems || []
 
       this.roadmapObserver = new IntersectionObserver(
-        (entries) => {
+        () => {
           if (this.isProgrammaticScrolling) {
             return
           }
 
-          const visibleEntries = entries.filter((entry) => entry.isIntersecting)
+          let closestIndex = 0
+          let closestDistance = Infinity
 
-          if (!visibleEntries.length) {
-            return
-          }
+          roadmapItems.forEach((item, index) => {
+            const rect = item.getBoundingClientRect()
 
-          visibleEntries.sort(
-            (a, b) =>
-              b.intersectionRatio - a.intersectionRatio ||
-              a.boundingClientRect.top - b.boundingClientRect.top
-          )
+            const itemCenter = rect.top + rect.height / 2
+            const viewportCenter = window.innerHeight / 2
 
-          this.activeRoadmapIndex = Number(
-            visibleEntries[0].target.dataset.index
-          )
+            const distance = Math.abs(itemCenter - viewportCenter)
+
+            if (distance < closestDistance) {
+              closestDistance = distance
+              closestIndex = index
+            }
+          })
+
+          this.activeRoadmapIndex = closestIndex
         },
         {
-          rootMargin: '0px 0px -15% 0px',
-          threshold: 0.2,
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
         }
       )
 

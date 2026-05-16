@@ -2,7 +2,7 @@
   <button
     :class="
       clsx(
-        'group inline-flex items-center gap-2 rounded-full p-1 text-black transition-colors duration-300 ease-in-out hover:bg-black',
+        'group inline-flex items-center gap-2 rounded-full p-1 text-black transition-colors duration-300 ease-in-out hover:bg-black focus:outline-none',
         isLightMode
           ? 'text-black hover:text-white'
           : 'text-white hover:bg-white hover:text-black'

@@ -10,7 +10,7 @@
     "
   >
     <div
-      class="max-w-8xl mx-auto flex items-center justify-between gap-6 px-6 py-4"
+      class="mx-auto flex max-w-8xl items-center justify-between gap-6 px-6 py-4"
     >
       <router-link class="flex items-center gap-3 no-underline" to="/">
         <span class="text-2xl font-bold tracking-normal text-current">
@@ -23,7 +23,8 @@
           v-for="item in navItems"
           :key="item.to"
           class="relative font-semibold text-current no-underline transition after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:content-[''] hover:text-zinc-500 hover:after:scale-x-100"
-          :to="item.to"
+          :to="item.label === 'Liên hệ' ? JSON.parse(item.to) : item.to"
+          @click.native="handleNavItemClick(item.to, $event)"
         >
           {{ item.label }}
         </router-link>
@@ -90,6 +91,23 @@ export default {
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
+    },
+    handleNavItemClick(to, event) {
+      if (to !== '/' || this.$route.name !== 'home') {
+    return
+  }
+
+  event.preventDefault()
+
+  if (this.$route.hash) {
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}`
+    )
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' })
     },
   },
 }

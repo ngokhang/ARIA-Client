@@ -15,11 +15,19 @@ import HeroSection from './components/HeroSection.vue'
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      users: [],
+      isLoading: false,
+    }
+  },
   components: {
     AchievementsSection,
     ContactSection,
     FeaturedSection,
     HeroSection,
+  },
+  methods: {
   },
 }
 </script>

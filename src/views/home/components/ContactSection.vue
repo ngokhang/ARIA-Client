@@ -1,7 +1,7 @@
 <template>
   <section
     id="contact"
-    class="contact-section relative z-10 mt-16 w-full max-w-full scroll-mt-24 px-4 pb-12 sm:mt-20 sm:px-6 sm:pb-16 lg:mt-24 lg:px-8"
+    class="contact-section mt-16 w-full max-w-full scroll-mt-24 px-4 pb-12 sm:mt-20 sm:px-6 sm:pb-16 lg:mt-24 lg:px-8"
   >
     <div
       :class="
@@ -52,9 +52,7 @@
               "
               class="min-w-0 rounded-2xl border p-4 shadow-xl backdrop-blur sm:p-5 lg:rounded-3xl lg:p-6"
             >
-              <h3 class="text-xl font-black sm:text-2xl">
-                Liên hệ trực tiếp
-              </h3>
+              <h3 class="text-xl font-black sm:text-2xl">Liên hệ trực tiếp</h3>
               <a
                 class="mt-5 flex min-w-0 items-center gap-3 sm:gap-4 lg:mt-6"
                 :href="`tel:${phoneNumber}`"
@@ -72,7 +70,7 @@
                     Điện thoại cá nhân
                   </span>
                   <span
-                    class="mt-1 block overflow-wrap-anywhere text-base font-bold sm:text-xl"
+                    class="overflow-wrap-anywhere mt-1 block text-base font-bold sm:text-xl"
                   >
                     {{ phoneLabel }}
                   </span>
@@ -95,7 +93,7 @@
                     Email
                   </span>
                   <span
-                    class="mt-1 block overflow-wrap-anywhere text-base font-bold sm:text-xl"
+                    class="overflow-wrap-anywhere mt-1 block text-base font-bold sm:text-xl"
                   >
                     {{ email }}
                   </span>
@@ -111,9 +109,7 @@
               "
               class="min-w-0 rounded-2xl border p-4 shadow-xl backdrop-blur sm:p-5 lg:rounded-3xl lg:p-6"
             >
-              <h3 class="text-xl font-black sm:text-2xl">
-                Theo dõi Ngô Khang
-              </h3>
+              <h3 class="text-xl font-black sm:text-2xl">Theo dõi Ngô Khang</h3>
               <div class="mt-5 space-y-4 lg:mt-6 lg:space-y-5">
                 <a
                   v-for="channel in socialChannels"

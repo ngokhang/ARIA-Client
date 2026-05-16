@@ -2,13 +2,13 @@
   <footer
     :class="
       isLightMode
-        ? 'border-slate-200 bg-white text-slate-950'
-        : 'border-white/10 bg-black text-white'
+        ? 'border-slate-50 bg-slate-50 text-slate-950'
+        : 'border-white/10 bg-slate-900 text-white'
     "
     class="border-t transition-colors duration-300 ease-in-out"
   >
     <div
-      class="max-w-8xl mx-auto flex flex-col gap-6 px-6 py-5 md:flex-row md:items-center md:justify-between"
+      class="mx-auto flex max-w-8xl flex-col gap-6 px-6 py-5 md:flex-row md:items-center md:justify-between"
     >
       <div>
         <router-link class="text-base font-bold tracking-tight" to="/">

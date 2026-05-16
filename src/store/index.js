@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     name: 'Ngo Phu Khang',
-    lightMode: false,
+    lightMode: true,
     students: [
       { name: 'Nguyen Van A', age: 20 },
       { name: 'Le Thi B', age: 22 },
@@ -15,14 +15,20 @@ export default new Vuex.Store({
     navItems: [
       { label: 'Trang chủ', to: '/' },
       { label: 'Giới thiệu', to: '/#achievements' },
-      { label: 'Hình ảnh', to: '/media' },
-      { label: 'Liên hệ', to: '#contact' },
+      { label: 'Hình ảnh', to: '/hinh-anh' },
+      {
+        label: 'Liên hệ',
+        to: JSON.stringify({ name: 'home', hash: '#contact' }),
+      },
     ],
     sidebarItems: [
-      { label: 'Trang chủ', to: '/' },
+      { label: 'Trang chủ', to: JSON.stringify({ name: 'home' }) },
       { label: 'Giới thiệu', to: '/#achievements' },
-      { label: 'Hình ảnh', to: '/media' },
-      { label: 'Liên hệ', to: '#contact' },
+      { label: 'Hình ảnh', to: '/hinh-anh' },
+      {
+        label: 'Liên hệ',
+        to: JSON.stringify({ name: 'home', hash: '#contact' }),
+      },
     ],
   },
   getters: {

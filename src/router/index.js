@@ -80,6 +80,14 @@ const routes = [
     },
   },
   {
+    path: '/hinh-anh',
+    name: 'gallery',
+    component: () => import('@/views/GalleryView.vue'),
+    meta: {
+      title: 'Hình ảnh - ARIA',
+    },
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFoundView,
